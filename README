@@ -1,0 +1,137 @@
+#### curl
+
+project: curl requests
+context: quantitative finance
+purpose: perform exchange requests from bash
+users: quant developers
+
+#### Phases
+
+0. goals
+    - have a binance requests module coded in bash
+    - possible use with python, cpp or just bash
+    - first step on light weight implementation (on linux)
+    - crate a bash module for binance (bash binance and promote it on GitHub)
+
+1. requirements
+
+  - GET requests
+          - get market data
+          - get balance
+  - POST requests
+          - place market order
+          - place limit order
+  - call function from python
+  - call function from cpp
+  - register non execution cause, handle error codes
+  - know the reponse code
+
+2. design
+  - functional programming language
+  - request functions
+  - arguments
+  - module design
+  - function return
+
+3. implementation
+  - test cases
+      - test connection
+      - authenticate / get signature
+      - get price data -> and preprocess it with a python script for datapipelining
+      - (SPOT) get balance
+      - (SPOT) get partial balance
+      - (SPOT) place a market order -> simple bot that add positions at  pumps when price is trending
+      - (SPOT) place a limit order
+      - (SPOT) place an order with stoploss, use ratio as argument, amount ?, side ?
+      - (SPOT) get open trades
+      - (SPOT) close all trades -> to stable
+      - (SPOT) get ticker price
+      - (FUTURES) geet price data -> preprocess it with a python script for datapipelining
+      - (FUTURES) place a market order
+      - (FUTURES) place a limit order
+      - (FUTURES) place a limit order with stoploss, use ratio as argument, amount ?, side
+      - (FUTURES) set leverage
+      - (FUTURES) get balance
+      - (FUTURES) get partial balance
+      - (FUTURES) get open trades
+      - (FUTURES) close all trades
+      - (FUTURES) get ticker price
+
+  - create an automated test in spyder, seperate between endpoints that requires use of stable coin (place market order, entry / exit)
+
+  4. process
+          - iterative process / spyral -> agile
+
+  5. maintenance
+
+
+### Iteration 1
+  - ping
+    - how to handle a null value
+  - get_ticker
+    - how to pass arguments to a function
+
+  * Roadblocks
+    - Not having internet connection (SSL)
+
+### Iteration 2
+  - reviewed how to return values from functions
+  - code refactoring -> removing code duplicates
+  - test cases -> connection test case done
+  - created git repository
+  - 
+
+#### Next Iteration
+    1. Simple bot in 1 or many symbols to add risk limited positions when it's trending (LONG / SHORT)
+    2. Multiple Processes Consuming from a the same signal
+    3. Apply bash module as a python package ? What is the risk of fault ? Bad request ?
+
+    $ Inventory Manager Algorithm on Bash -> storing inner state in a binary file also
+          - storing inner state in a binary file
+          - simplified version holding state in the exchange (does not require orders)
+          - place market orders
+          - place limit orders
+          - close positions (balance from non stable to stable)
+
+#### documentation
+
+# man pages
+man curl
+
+# binance api
+https://binance-docs.github.io/apidocs/spot/en/#exchange-information
+
+#### code samples
+
+# test connectivity
+curl -s 'https://api.binance.com/api/v3/ping' ~> reponse {}
+
+# exchange info
+curl -X GET "https://api.binance.com/api/v3/exchangeInfo" | jq -r .price
+
+# get ticker data
+curl -s 'https://api.binance.com/api/v3/ticker/price?symbol=ETHBTC' | jq -r .price
+
+# get api data
+curl -s 'https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=100' # how to parse this -> to list in python ???
+
+# authentication / signature
+$ echo -n "symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559" | openssl dgst -sha256 -hmac "NhqPtmdSJYdKjVH$
+(stdin)= c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71
+
+# place a trade
+$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIM$
+
+#### Sources
+
+# Authentication
+https://stackoverflow.com/questions/67616892/how-to-authenticate-a-curl-request-to-the-binance-api
+
+# get price data
+https://stackoverflow.com/questions/55041764/how-to-scrape-the-binance-price-in-bash
+
+# signed trade at binance docs
+https://binance-docs.github.io/apidocs/spot/en/#signed-trade-user_data-and-margin-endpoint-security
+
+#binance to google sheets
+https://mixedanalytics.com/knowledge-base/import-binance-data-to-google-sheets/

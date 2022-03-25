@@ -1,5 +1,5 @@
-source binance/binance.sh
+source binance.sh
 
 get_ticker BTCUSDT
 
-echo $resp
+echo "Response" $resp
