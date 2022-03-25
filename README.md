@@ -1,2 +1,2 @@
-# solid-telegram
-Shell Project
+# exchange api interaction usign shell commands
+Shell project
