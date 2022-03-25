@@ -73,13 +73,13 @@ users: quant developers
 
   * Roadblocks
     - Not having internet connection (SSL)
+    S: Assign time to code neat wifispot
 
 ### Iteration 2
   - reviewed how to return values from functions
   - code refactoring -> removing code duplicates
   - test cases -> connection test case done
   - created git repository
-  - 
 
 #### Next Iteration
     1. Simple bot in 1 or many symbols to add risk limited positions when it's trending (LONG / SHORT)
@@ -122,6 +122,10 @@ $ echo -n "symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.
 # place a trade
 $ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X POST 'https://api.binance.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIM$
 
+# get_partial_balance
+GET /sapi/v1/accountSnapshot (HMAC SHA256) *checkdocs!!!
+
+
 #### Sources
 
 # Authentication
@@ -135,3 +139,9 @@ https://binance-docs.github.io/apidocs/spot/en/#signed-trade-user_data-and-margi
 
 #binance to google sheets
 https://mixedanalytics.com/knowledge-base/import-binance-data-to-google-sheets/
+
+#account get_spot_balance
+https://binance-docs.github.io/apidocs/spot/en/#daily-account-snapshot-user_data
+
+#futures -> fapi
+https://binance-docs.github.io/apidocs/futures/en/#new-order-trade

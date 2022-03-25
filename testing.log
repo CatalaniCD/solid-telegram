@@ -1,18 +1,9 @@
-[03-25-2022 12:02:33.700048] : [Test Case] : Connection
-[03-25-2022 12:02:33.702160] : >>> Performing a ping in the binance server
-[03-25-2022 12:02:33.783072] : Request Success with exit code 35
-[03-25-2022 12:02:34.226321] : [Test Case] : Connection
-[03-25-2022 12:02:34.228135] : >>> Performing a ping in the binance server
-[03-25-2022 12:02:34.279634] : Request Success with exit code 35
-[03-25-2022 12:02:34.472482] : [Test Case] : Connection
-[03-25-2022 12:02:34.474665] : >>> Performing a ping in the binance server
-[03-25-2022 12:02:34.531752] : Request Success with exit code 35
-[03-25-2022 12:02:34.639819] : [Test Case] : Connection
-[03-25-2022 12:02:34.641873] : >>> Performing a ping in the binance server
-[03-25-2022 12:02:34.684312] : Request Success with exit code 35
-[03-25-2022 12:02:34.779520] : [Test Case] : Connection
-[03-25-2022 12:02:34.781443] : >>> Performing a ping in the binance server
-[03-25-2022 12:02:34.838194] : Request Success with exit code 35
-[03-25-2022 12:02:34.924443] : [Test Case] : Connection
-[03-25-2022 12:02:34.926668] : >>> Performing a ping in the binance server
-[03-25-2022 12:02:34.976356] : Request Success with exit code 35
+[03-25-2022 13:17:39.546990] - [Test Case] : Spot Connection
+[03-25-2022 13:17:39.601460] - [url] : https://api.binance.com/api/v3/ping || [resp] : ERROR || [exit code] : 35
+[03-25-2022 13:17:39.603532] - [Connection Status] : 0
+[03-25-2022 13:17:39.605415] - [Test Case] : Futures Connection
+[03-25-2022 13:17:39.653105] - [url] : https://api.binance.com/fapi/v1/ping || [resp] : ERROR || [exit code] : 35
+[03-25-2022 13:17:39.655514] - [Connection Status] : 0
+[03-25-2022 13:17:39.657664] - [Test Case] : Spot Get Ticker
+[03-25-2022 13:17:39.705803] - [url] : https://api.binance.com/api/v3/ticker?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
+[03-25-2022 13:17:39.707965] - [Ticker BTCUSDT] : None

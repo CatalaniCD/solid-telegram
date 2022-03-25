@@ -2,10 +2,16 @@
 source binance.sh
 
 # test cases
-
-echo $log_file
+rm $log_file
+touch $log_file
 
 # connection
-logger "[Test Case] : Connection"
+logger "[Test Case] : Spot Connection"
+spot_ping
 
-ping
+logger "[Test Case] : Futures Connection"
+futures_ping
+
+#get ticker
+logger "[Test Case] : Spot Get Ticker"
+get_spot_ticker BTCUSDT

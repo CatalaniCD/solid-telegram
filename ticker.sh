@@ -1,5 +1,5 @@
 source binance.sh
 
-get_ticker BTCUSDT
+get_spot_ticker BTCUSDT
 
 echo "Response" $resp
