@@ -32,10 +32,12 @@ users: quant developers
   - arguments
   - module design
   - function return
+  - apply pipe design for big functions -> Too Expensive
+  - hadle bad requests on pipes -> Too expensive
 
 3. implementation
   - test cases
-      - test connection
+      @ - test connection
       - authenticate / get signature
       - get price data -> and preprocess it with a python script for datapipelining
       - (SPOT) get balance
@@ -45,8 +47,9 @@ users: quant developers
       - (SPOT) place an order with stoploss, use ratio as argument, amount ?, side ?
       - (SPOT) get open trades
       - (SPOT) close all trades -> to stable
-      - (SPOT) get ticker price
-      - (FUTURES) geet price data -> preprocess it with a python script for datapipelining
+      @ - (SPOT) get ticker price
+      @ - (SPOT) get exchange / symbol specifications
+      - (FUTURES) get price data -> preprocess it with a python script for datapipelining
       - (FUTURES) place a market order
       - (FUTURES) place a limit order
       - (FUTURES) place a limit order with stoploss, use ratio as argument, amount ?, side
@@ -80,6 +83,12 @@ users: quant developers
   - code refactoring -> removing code duplicates
   - test cases -> connection test case done
   - created git repository
+  - filtering keys from a json file : jq '.price'
+
+### Iteration 3
+  - use a separate script with all the data
+  - Create a 1 minute stream ticker
+  - print(f'{datetime} | {symbol} | {price}')
 
 #### Next Iteration
     1. Simple bot in 1 or many symbols to add risk limited positions when it's trending (LONG / SHORT)
@@ -107,7 +116,12 @@ https://binance-docs.github.io/apidocs/spot/en/#exchange-information
 curl -s 'https://api.binance.com/api/v3/ping' ~> reponse {}
 
 # exchange info
-curl -X GET "https://api.binance.com/api/v3/exchangeInfo" | jq -r .price
+curl -X GET "https://api.binance.com/api/v3/exchangeInfo"
+curl -X GET "https://api.binance.us/api/v3/exchangeInfo?symbol=BNBBTC" # single symbol
+
+# futures
+/fapi/v1/exchangeInfo
+
 
 # get ticker data
 curl -s 'https://api.binance.com/api/v3/ticker/price?symbol=ETHBTC' | jq -r .price
@@ -125,8 +139,17 @@ $ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7J
 # get_partial_balance
 GET /sapi/v1/accountSnapshot (HMAC SHA256) *checkdocs!!!
 
+# jq test for empty json
+echo '{"test":"val"}' | jq empty; echo $? ~> 0, else different than 0
 
 #### Sources
+
+# jq guide
+https://www.baeldung.com/linux/jq-command-json
+https://stedolan.github.io/jq/manual/
+
+# bash desing patterns
+https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch11s06.html
 
 # Authentication
 https://stackoverflow.com/questions/67616892/how-to-authenticate-a-curl-request-to-the-binance-api

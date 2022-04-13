@@ -1,0 +1,6 @@
+Use aroon as a feature for a model,
+create a simple model where upbars are filtered using aroon up > 70, period 10.
+parameters: period upper level
+use also volatility ~> ATR / STD / Z_Score
+=>Create a fitting algorithm, linear search, grid search and plot 3d surfaces
+=>

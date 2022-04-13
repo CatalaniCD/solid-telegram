@@ -11,7 +11,7 @@ logger(){
 }
 
 test_resp(){
-	if [ -z $resp ]
+	if [ $code -ne 0 ]
 	then
 		status="ERROR"
 	else
@@ -38,12 +38,23 @@ test_connection(){
 }
 
 test_ticker(){
-	if [ -z $resp ]
+	is_json=$(echo $reps | jq empty; echo $?)
+	if [ $is_json -eq 0 ] && [ $code -eq 0 ]
 	then
-		logger "[Ticker $1] : None"
+		price=$(echo $resp | jq -r '.price')
+		logger "[Ticker $1] : $price"
 	else
-		resp=$($resp| jq -r .price)
-		logger "[Ticker $1] : $resp"
+		logger "[Ticker $1] : None"
+	fi
+}
+
+test_symbol_spec(){
+	code=$(echo $spec | jq empty; echo $?)
+	if [ $code -eq 0 ]
+	then
+		logger "[Spec] : OK"
+	else
+		logger "[Spec] : ERROR"
 	fi
 }
 
@@ -55,22 +66,49 @@ spot_ping(){
 }
 
 futures_ping(){
-	url='https://api.binance.com/fapi/v1/ping'
+	url='https://fapi.binance.com/fapi/v1/ping'
 	request $url
 	test_connection $code
 }
 
 get_spot_ticker(){
-	url="https://api.binance.com/api/v3/ticker?symbol=$1"
+	url="https://api.binance.com/api/v3/ticker/price?symbol=$1"
 	request $url
 	test_ticker $1
 }
 
 get_futures_ticker(){
 	# check url
-	url="https://api.binance.com/api/v3/ticker?symbol=$1"
+	# 'Detected Error to get the symbol'
+	url="https://fapi.binance.com/fapi/v1/ticker/price?symbol=$1"
 	request $url
+	echo $code $resp
 	test_ticker $1
+}
+
+select_symbol_spec(){
+	spec=$(echo $resp | jq ".symbols[] | select(.symbol==\"$1\")")
+	test_symbol_spec
+}
+
+get_spot_exchange(){
+	url="https://api.binance.com/api/v3/exchangeInfo"
+	request $url
+}
+
+get_futures_exchange(){
+	url="https://fapi.binance.com/fapi/v1/exchangeInfo"
+	request $url
+}
+
+get_spot_spec(){
+	url="https://api.binance.com/api/v3/exchangeInfo?symbol=$1"
+	request $url
+}
+
+get_futures_spec(){
+	url="https://fapi.binance.com/fapi/v1/exchangeInfo?symbol=$1"
+	request $url
 }
 
 get_partial_balance(){

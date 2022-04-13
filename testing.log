@@ -1,9 +1,25 @@
-[03-25-2022 13:59:52.926159] - [Test Case] : Spot Connection
-[03-25-2022 13:59:53.018362] - [url] : https://api.binance.com/api/v3/ping || [resp] : ERROR || [exit code] : 35
-[03-25-2022 13:59:53.020305] - [Connection Status] : 0
-[03-25-2022 13:59:53.022328] - [Test Case] : Futures Connection
-[03-25-2022 13:59:53.069123] - [url] : https://api.binance.com/fapi/v1/ping || [resp] : ERROR || [exit code] : 35
-[03-25-2022 13:59:53.071521] - [Connection Status] : 0
-[03-25-2022 13:59:53.073803] - [Test Case] : Spot Get Ticker
-[03-25-2022 13:59:53.117911] - [url] : https://api.binance.com/api/v3/ticker?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
-[03-25-2022 13:59:53.120140] - [Ticker BTCUSDT] : None
+[03-27-2022 17:51:19.769466] - [Test Case] : Futures Connection
+[03-27-2022 17:51:20.702928] - [url] : https://fapi.binance.com/fapi/v1/ping || [resp] : OK || [exit code] : 0
+[03-27-2022 17:51:20.706431] - [Connection Status] : 1
+[03-27-2022 17:51:20.709793] - [Test Case] : Futures Get Ticker
+[03-27-2022 17:51:21.332979] - [url] : https://fapi.binance.com/fapi/v1/ticker/price?symbol=BTCUSDT || [resp] : OK || [exit code] : 0
+[03-27-2022 17:51:21.345691] - [Ticker BTCUSDT] : 46622.00
+[03-27-2022 17:51:21.347798] - [Test Case] : get_futures_exchange
+[03-27-2022 17:51:23.456017] - [url] : https://fapi.binance.com/fapi/v1/exchangeInfo || [resp] : OK || [exit code] : 0
+[03-27-2022 17:51:23.505192] - [Spec] : OK
+[03-27-2022 17:51:23.507080] - [Test Case] : get_futures_spec
+[03-27-2022 17:51:26.049641] - [url] : https://fapi.binance.com/fapi/v1/exchangeInfo?symbol=BTCUSDT || [resp] : OK || [exit code] : 0
+[03-29-2022 11:55:24.475842] - [url] : https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
+[03-29-2022 11:55:24.494593] - [Ticker BTCUSDT] : None
+[03-29-2022 11:55:32.095888] - [url] : https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
+[03-29-2022 11:55:32.106397] - [Ticker BTCUSDT] : None
+[03-29-2022 11:55:48.791050] - [url] : https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
+[03-29-2022 11:55:48.800141] - [Ticker BTCUSDT] : None
+[03-29-2022 11:55:49.834705] - [url] : https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
+[03-29-2022 11:55:49.845385] - [Ticker BTCUSDT] : None
+[03-29-2022 11:55:51.549173] - [url] : https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
+[03-29-2022 11:55:51.556932] - [Ticker BTCUSDT] : None
+[03-29-2022 11:56:05.947246] - [url] : https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
+[03-29-2022 11:56:05.968984] - [Ticker BTCUSDT] : None
+[03-29-2022 11:56:06.975073] - [url] : https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT || [resp] : ERROR || [exit code] : 35
+[03-29-2022 11:56:06.984213] - [Ticker BTCUSDT] : None
