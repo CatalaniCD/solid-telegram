@@ -1,4 +1,4 @@
-# exchange api interaction usign shell commands
+# Exchange API interaction using shell commands
 
 ### Description
 
